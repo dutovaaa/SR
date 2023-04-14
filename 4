@@ -1,0 +1,33 @@
+class OfficeEvent:
+    max_attendees = 60
+    max_duration = 8
+    
+    def __init__(self, name, attendees = 0, duration = 1):
+        self.name = name
+        self.attendees = attendees
+        self.duration = duration
+        
+    def add_attendees(self):
+        if self.attendees < self.max_attendees:
+            self.attendees += 1
+            
+    def remove_attendees(self):
+        if self.attendees > 0:
+            self.attendees -= 1
+            
+    def extend_duration(self, hours):
+        self.duration += hours 
+        if self.duration >= self.max.duration:
+            self.duration = self.max_duration
+            
+    @staticmethod
+    def is_valid_name(name):
+        return (len(name) >= 3) and (len(name) <= 60)
+    
+    @classmethod
+    def create_random_event(cls):
+        import random 
+        name = f"Event {random.randint(1, 100)}"
+        attendees = random.randint(1, cls.max_attendees)
+        duration = random.randint(1, cls.max_duration)
+        return cls(name, attendees, duration)
